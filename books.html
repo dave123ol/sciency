@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sciency - Books</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="Sciency Logo" class="logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="books.html" class="active">Books</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="featured-books">
+        <h2>Science Books Repository</h2>
+        <p>Browse, view, or download our collection of science books.</p>
+        <div id="all-books" class="books-grid"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sciency. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        fetch('_books/books.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('all-books');
+                if (!data.books || data.books.length === 0) {
+                    container.innerHTML = '<p>No books available yet. Please check back later.</p>';
+                    return;
+                }
+                container.innerHTML = data.books.map(book => `
+                    <div class="book">
+                        <h3>${book.title}</h3>
+                        <p>${book.description}</p>
+                        <a href="${book.file}" target="_blank">View / Download</a>
+                    </div>
+                `).join('');
+            })
+            .catch(error => {
+                console.error('Error loading books:', error);
+                document.getElementById('all-books').innerHTML = '<p>Unable to load books.</p>';
+            });
+    </script>
+</body>
+</html>
