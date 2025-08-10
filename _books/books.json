@@ -1,0 +1,9 @@
+here{
+  "books": [
+    {
+      "title": "The Wonders of Physics",
+      "description": "An introductory guide to the fascinating world of physics.",
+      "file": "/assets/uploads/sample-book.pdf"
+    }
+  ]
+}
