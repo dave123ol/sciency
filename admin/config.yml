@@ -1,0 +1,32 @@
+backend:
+  name: git-gateway
+  branch: main # or "master" if that's your repo's default branch
+
+media_folder: "assets/uploads" # Where files are stored in the repo
+public_folder: "/assets/uploads" # How files are accessed on the site
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "books"
+    label: "Books"
+    files:
+      - label: "Books List"
+        name: "books"
+        file: "_books/books.json"
+        fields:
+          - label: "Books"
+            name: "books"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "PDF File", name: "file", widget: "file" }
