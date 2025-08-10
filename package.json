@@ -1,0 +1,11 @@
+{
+  "name": "sciency",
+  "version": "1.0.0",
+  "scripts": {
+    "build-posts": "node build-posts.js",
+    "build": "npm run build-posts"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  }
+}
