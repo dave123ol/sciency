@@ -1,0 +1,58 @@
+<!DOCTYPE html<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sciency - Books</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="Sciency Logo" class="logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="books.html" class="active">Books</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Science Books</h1>
+        <p>Explore and download science books for free.</p>
+    </section>
+
+    <section class="posts">
+        <h2>Available Books</h2>
+        <div id="book-list" class="book-list"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sciency. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Fetch book data from CMS-generated JSON (you'll configure Netlify CMS to produce this)
+        fetch('_books/books.json')
+            .then(res => res.json())
+            .then(books => {
+                const container = document.getElementById('book-list');
+                books.forEach(book => {
+                    container.innerHTML += `
+                        <div class="book">
+                            <h3>${book.title}</h3>
+                            <p>${book.description}</p>
+                            <a href="${book.file}" target="_blank" class="btn">View</a>
+                            <a href="${book.file}" download class="btn">Download</a>
+                        </div>
+                    `;
+                });
+            })
+            .catch(err => {
+                document.getElementById('book-list').innerHTML = "<p>Unable to load books at the moment.</p>";
+                console.error("Error loading books:", err);
+            });
+    </script>
+</body>
+</html>￼Enter
