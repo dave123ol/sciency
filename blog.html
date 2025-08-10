@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sciency - Blog</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="Sciency Logo" class="logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="blog.html" class="active">Blog</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="posts">
+        <h2>Latest Blog Posts</h2>
+        <div id="blog-list" class="books-grid"></div> <!-- Using same grid as books for consistent design -->
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sciency. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        fetch('_posts/posts.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('blog-list');
+                if (!data.posts || data.posts.length === 0) {
+                    container.innerHTML = '<p>No blog posts yet. Please check back later.</p>';
+                    return;
+                }
+                container.innerHTML = data.posts.map(post => `
+                    <div class="book"> <!-- Reusing .book styling -->
+                        <h3>${post.title}</h3>
+                        <p><em>${new Date(post.date).toLocaleDateString()}</em></p>
+                        <p>${post.excerpt || post.body.substring(0, 100) + '...'}</p>
+                        <a href="${post.url || '#'}">Read More</a>
+                    </div>
+                `).join('');
+            })
+            .catch(error => {
+                console.error('Error loading blog posts:', error);
+                document.getElementById('blog-list').innerHTML = '<p>Unable to load blog posts.</p>';
+            });
+    </script>
+</body>
+</html>
