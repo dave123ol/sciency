@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sciency - Contact</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="Sciency Logo" class="logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Contact Us</h1>
+        <p>Have a science idea, article, or feedback? Send it to us.</p>
+    </section>
+
+    <section class="posts">
+        <h2>Send us a message</h2>
+        <form name="contact" method="POST" data-netlify="true" class="contact-form">
+            <input type="hidden" name="form-name" value="contact">
+            
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sciency. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>￼Enter
