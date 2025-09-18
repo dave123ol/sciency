@@ -1,0 +1,36 @@
+backend:
+  name: github
+  repo: dave123ol/Sciency   # your GitHub repo
+  branch: main              # or master if that’s your default
+
+media_folder: "assets/uploads"   # folder where images are saved in repo
+public_folder: "/assets/uploads" # path used by the frontend
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "books"
+    label: "Books"
+    files:
+      - label: "Books List"
+        name: "books"
+        file: "_books/books.json"
+        fields:
+          - label: "Books"
+            name: "books"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "PDF File", name: "file", widget: "file" }
