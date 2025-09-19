@@ -1,0 +1,34 @@
+backend:
+  name: git-gateway
+  branch: main   # Make sure this matches your default branch
+
+media_folder: "assets/uploads"   # Folder in your repo where images/files go
+public_folder: "/assets/uploads" # Public URL path for uploaded files
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "books"
+    label: "Books"
+    files:
+      - label: "Books List"
+        name: "books"
+        file: "_books/books.json"
+        fields:
+          - label: "Books"
+            name: "books"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "File", name: "file", widget: "file" }
